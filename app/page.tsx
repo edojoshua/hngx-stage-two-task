@@ -1,10 +1,15 @@
-import SearchBar from "@/components/SearchBar";
+import Banner from "@/components/Banner";
+import FeaturedMovies from "@/components/FeaturedMovies";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <SearchBar />
-      HomePage
+      <Header />
+      <Banner />
+      <FeaturedMovies />
+      <Footer />
     </main>
   );
 }

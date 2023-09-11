@@ -8,7 +8,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "./ui/command";
+} from "./ui/Command";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Loader2, TvIcon } from "lucide-react";
@@ -16,6 +16,7 @@ import { usePathname, useRouter } from "next/navigation";
 import debounce from "lodash.debounce";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 import { Movie } from "@/types/tmdb";
+import Link from "next/link";
 
 interface SearchBarProps {}
 
@@ -24,7 +25,8 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
   const router = useRouter();
   const pathname = usePathname();
   const commandRef = useRef<HTMLDivElement>(null);
-  const accessToken: string | undefined = process.env.NEXT_PUBLIC_API_READ_ACCESS_TOKEN
+  const accessToken: string | undefined =
+    process.env.NEXT_PUBLIC_API_READ_ACCESS_TOKEN;
 
   useOnClickOutside(commandRef, () => {
     setInput("");
@@ -51,8 +53,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
           },
           headers: {
             accept: "application/json",
-            Authorization:
-            `Bearer ${accessToken}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         });
 
@@ -82,7 +83,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
   return (
     <Command
       ref={commandRef}
-      className="rounded-lg border max-w-lg z-50 overflow-visible h-fit relative"
+      className="rounded-lg border w-[35rem] text-white z-50 overflow-visible h-fit relative bg-transparent"
     >
       <CommandInput
         onValueChange={(text) => {
@@ -90,33 +91,39 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
           debounceRequest();
         }}
         value={input}
-        className="outline-none border-none focus focus:border-none focus:outline-none ring-0"
-        placeholder="Explore"
+        className="outline-none border-none focus focus:border-none focus:outline-none ring-0 bg-transparent"
+        placeholder="What do you want to watch?"
       />
 
       {input.length > 0 && (
-        <CommandList className="absolute bg-white top-full inset-x-0 shadow rounded-b-md">
+        <CommandList className="absolute bg-black text-white top-full inset-x-0 shadow rounded-b-md">
           {isFetching && (
             <div className="w-full flex p-2 items-center justify-center">
               <Loader2 className="animate-spin" />
             </div>
           )}
-          {isFetched && <CommandEmpty>No results found.</CommandEmpty>}
+          {isFetched && (
+            <CommandEmpty className=" bg-black text-white p-3 text-sm font-medium">
+              No results found.
+            </CommandEmpty>
+          )}
           {(queryResults?.length ?? 0) > 0 ? (
             <CommandGroup heading="Movies">
-              {queryResults?.map((movie) => (
-                <CommandItem
-                  onSelect={(e) => {
-                    router.push(`/movie/${e}`);
-                    router.refresh();
-                  }}
-                  key={movie.id}
-                  value={movie.original_title}
-                >
-                  <TvIcon className="mr-2 h-4 w-4" />
-                  <a href={`/movie/${movie.id}`}>{movie.original_title}</a>
-                </CommandItem>
-              ))}
+              {queryResults?.map(
+                (movie) =>
+                  movie.id && (
+                    <CommandItem
+                      className="text-white"
+                      key={movie.id}
+                      value={movie.original_title}
+                    >
+                      <TvIcon className="mr-2 h-4 w-4" />
+                      <Link href={`/movie/${movie.id}`}>
+                        {movie.original_title}
+                      </Link>
+                    </CommandItem>
+                  )
+              )}
             </CommandGroup>
           ) : null}
         </CommandList>
