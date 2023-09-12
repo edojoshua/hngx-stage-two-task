@@ -30,10 +30,19 @@ const FeaturedMovies: FC<FeaturedMoviesProps> = ({}) => {
           <ChevronRight />
         </Link>
       </div>
-      <div className="pb-[9vh] grid gap-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {movies !== undefined &&
-          movies.map((movie) => <Card key={movie.id} movie={movie} />)}
-      </div>
+      {movies && movies.length > 0 && (
+        <div className="pb-[9vh] grid gap-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {(() => {
+            const cards = [];
+            for (let i = 0; i < 10; i++) {
+              if (movies[i]) {
+                cards.push(<Card key={movies[i].id} movie={movies[i]} />);
+              }
+            }
+            return cards;
+          })()}
+        </div>
+      )}
     </div>
   );
 };
