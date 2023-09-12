@@ -3,10 +3,37 @@ import Image from "next/image";
 
 const imdbPath = require("@/public/icons/imdb.svg") as string;
 const tomatoPath = require("@/public/icons/tomato.svg") as string;
+const homePath = require("@/public/icons/Home.svg") as string;
+const tvSeriesPath = require("@/public/icons/TV Show.svg") as string;
+const calendarPath = require("@/public/icons/Calendar.svg") as string;
+const ticketPath = require("@/public/icons/Two Tickets.svg") as string;
+const movieProjectorPath =
+  require("@/public/icons/Movie Projector.svg") as string;
+const listPath = require("@/public/icons/List.svg") as string;
+const listWhitePath = require("@/public/icons/List-white.png") as string;
+const twitterPath = require("@/public/icons/twitter.svg") as string;
+const facebookPath = require("@/public/icons/facebook.svg") as string;
+const instagramPath = require("@/public/icons/instagram.svg") as string;
+const youtubePath = require("@/public/icons/youtube.svg") as string;
+const sendPath = require("@/public/icons/send.svg") as string;
+const logOutPath = require("@/public/icons/Logout.svg") as string;
 
 export const Icons = {
-  imdb: (props: LucideProps) => <Image src={imdbPath} alt="Tomato" />,
-  tomato: (props: LucideProps) => <Image src={tomatoPath} alt="Tomato" />,
+  imdb: () => <Image src={imdbPath} alt="Tomato" />,
+  tomato: () => <Image src={tomatoPath} alt="Tomato" />,
+  home: () => <Image src={homePath} alt="Tomato" />,
+  tvSeries: () => <Image src={tvSeriesPath} alt="Tomato" />,
+  ticket: () => <Image src={ticketPath} alt="Tomato" />,
+  movieProjector: () => <Image src={movieProjectorPath} alt="Tomato" />,
+  calendar: () => <Image src={calendarPath} alt="Tomato" />,
+  twitter: () => <Image src={twitterPath} alt="Tomato" />,
+  listWhite: () => <Image src={listWhitePath} alt="Tomato" />,
+  list: () => <Image src={listPath} alt="Tomato" />,
+  facebook: () => <Image src={facebookPath} alt="Tomato" />,
+  instagram: () => <Image src={instagramPath} alt="Tomato" />,
+  youtube: () => <Image src={youtubePath} alt="Tomato" />,
+  send: () => <Image src={sendPath} alt="Tomato" />,
+  logOut: () => <Image src={logOutPath} alt="Tomato" />,
   play: (props: LucideProps) => (
     <svg
       width="20"

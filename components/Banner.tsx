@@ -30,7 +30,7 @@ const Banner: FC<BannerProps> = ({}) => {
               <span className="text-sm">97%</span>
             </div>
           </div>
-          <p className="font-medium text-xs md:textbase">
+          <p className="font-medium text-xs md:text-base">
             John wick is on the run after killing a member of the international
             assassins guild and with a $14 million price tag on his head, he is
             the target of hit men and women everywhere.
