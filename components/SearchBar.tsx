@@ -10,23 +10,19 @@ import {
   CommandList,
 } from "./ui/Command";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Loader2, TvIcon } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import debounce from "lodash.debounce";
 import { useOnClickOutside } from "@/hooks/use-on-click-outside";
-import { Movie } from "@/types/tmdb";
 import Link from "next/link";
+import { fetchSearchMovies } from "@/lib/requests";
 
 interface SearchBarProps {}
 
 const SearchBar: FC<SearchBarProps> = ({}) => {
   const [input, setInput] = useState<string>("");
-  const router = useRouter();
   const pathname = usePathname();
   const commandRef = useRef<HTMLDivElement>(null);
-  const accessToken: string | undefined =
-    process.env.NEXT_PUBLIC_API_READ_ACCESS_TOKEN;
 
   useOnClickOutside(commandRef, () => {
     setInput("");
@@ -38,32 +34,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
     isFetched,
     isFetching,
   } = useQuery({
-    queryFn: async () => {
-      if (!input) return [];
-
-      try {
-        const response = await axios.request({
-          method: "GET",
-          url: "https://api.themoviedb.org/3/search/movie",
-          params: {
-            query: input,
-            include_adult: "false",
-            language: "en-US",
-            page: "1",
-          },
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-
-        console.log(response.data.results);
-        return response.data.results as Movie[];
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-        throw error;
-      }
-    },
+    queryFn: () => fetchSearchMovies(input),
     queryKey: ["search-query"],
     enabled: false,
   });

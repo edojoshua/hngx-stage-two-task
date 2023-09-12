@@ -1,11 +1,26 @@
+"use client";
+
 import { FC } from "react";
 import Card from "./Card";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchTop10Movies } from "@/lib/requests";
 
 interface FeaturedMoviesProps {}
 
 const FeaturedMovies: FC<FeaturedMoviesProps> = ({}) => {
+  const {
+    data: movies,
+    refetch,
+    isFetched,
+    isFetching,
+  } = useQuery({
+    queryFn: () => fetchTop10Movies(),
+    queryKey: ["search-query"],
+    enabled: true,
+  });
+
   return (
     <div className="min-h-screen wrapper">
       <div className="flex justify-between py-9">
@@ -16,16 +31,8 @@ const FeaturedMovies: FC<FeaturedMoviesProps> = ({}) => {
         </Link>
       </div>
       <div className="pb-[9vh] grid gap-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {movies !== undefined &&
+          movies.map((movie) => <Card key={movie.id} movie={movie} />)}
       </div>
     </div>
   );
