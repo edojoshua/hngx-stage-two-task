@@ -16,8 +16,10 @@ const Banner: FC<BannerProps> = ({}) => {
         className="h-full w-full object-cover object-center absolute z-[-3]"
       />
       <div className="h-full w-full flex items-center wrapper">
-        <div className="space-y-5 max-w-sm">
-          <h2 className="font-semibold text-5xl">John Wick 3: Parabellum</h2>
+        <div className="space-y-5 max-w-xs md:max-w-sm">
+          <h2 className="font-semibold text-3xl md:text-5xl">
+            John Wick 3: Parabellum
+          </h2>
           <div className="flex gap-6">
             <div className="flex gap-2">
               <Icons.imdb />
@@ -28,14 +30,14 @@ const Banner: FC<BannerProps> = ({}) => {
               <span className="text-sm">97%</span>
             </div>
           </div>
-          <p className="font-medium">
+          <p className="font-medium text-xs md:textbase">
             John wick is on the run after killing a member of the international
             assassins guild and with a $14 million price tag on his head, he is
             the target of hit men and women everywhere.
           </p>
           <Button className={`bg-[#BE123C] space-x-2`}>
             <Icons.play />
-            <span>WATCH TRAILER</span>
+            <span className="font-medium">WATCH TRAILER</span>
           </Button>
         </div>
       </div>

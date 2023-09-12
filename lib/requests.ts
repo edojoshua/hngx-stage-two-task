@@ -1,4 +1,4 @@
-import { Movie } from "@/types/tmdb";
+import { Genre, Movie } from "@/types/tmdb";
 import { axiosInstance } from "./axios";
 
 export const fetchTop10Movies = async () => {
@@ -58,3 +58,21 @@ export const fetchTop10Movies = async () => {
       throw error;
     }
   }
+
+
+  export const fetchGenreData = async () => {
+    try {
+      const response = await axiosInstance.get(`/genre/movie/list`, {
+        params: {
+          language: "en-US",
+        },
+      });
+      console.log(response.data.genres);
+      return response.data.genres as Genre[];
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+      throw error;
+    }
+  }
+
+  

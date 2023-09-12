@@ -1,9 +1,12 @@
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 const Footer = () => {
+
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="wrapper flex items-center justify-center py-10">
-      <div className="w-4/5 md:w-1/3 space-y-7 font-semibold text-sm md:text-base">
+      <div className="w-[95%] md:w-1/3 space-y-4 md:space-y-7 font-semibold text-xs md:text-sm">
         <div className="flex items-center justify-evenly">
           <Facebook />
           <Instagram />
@@ -16,7 +19,7 @@ const Footer = () => {
           <span>Press Room</span>
         </div>
         <div className="text-center text-zinc-500">
-          © 2021 MovieBox by Adriana Eka Prayudha
+          © {currentYear} MovieBox by Joshua Edo
         </div>
       </div>
     </footer>

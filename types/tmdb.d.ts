@@ -15,3 +15,8 @@ export type Movie = {
       vote_count: number;
   };
   
+  export type Genre = {
+      id: number;
+      name: string;
+  };
+  

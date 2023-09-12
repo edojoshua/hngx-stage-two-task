@@ -54,7 +54,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
   return (
     <Command
       ref={commandRef}
-      className="rounded-lg border w-[35rem] text-white z-50 overflow-visible h-fit relative bg-transparent"
+      className="rounded-lg border w-[20rem] md:w-[35rem] text-white z-50 overflow-visible h-fit relative bg-transparent"
     >
       <CommandInput
         onValueChange={(text) => {
@@ -83,16 +83,16 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
               {queryResults?.map(
                 (movie) =>
                   movie.id && (
-                    <CommandItem
-                      className="text-white"
-                      key={movie.id}
-                      value={movie.original_title}
-                    >
-                      <TvIcon className="mr-2 h-4 w-4" />
-                      <Link href={`/movie/${movie.id}`}>
+                    <Link href={`/movie/${movie.id}`}>
+                      <CommandItem
+                        className="text-white cursor-pointer"
+                        key={movie.id}
+                        value={movie.original_title}
+                      >
+                        <TvIcon className="mr-2 h-4 w-4" />
                         {movie.original_title}
-                      </Link>
-                    </CommandItem>
+                      </CommandItem>
+                    </Link>
                   )
               )}
             </CommandGroup>
