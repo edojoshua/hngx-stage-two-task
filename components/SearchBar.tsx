@@ -45,7 +45,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
 
   const debounceRequest = useCallback(() => {
     request();
-  }, []);
+  }, [request]);
 
   useEffect(() => {
     setInput("");
@@ -83,10 +83,9 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
               {queryResults?.map(
                 (movie) =>
                   movie.id && (
-                    <Link href={`/movie/${movie.id}`}>
+                    <Link key={movie.id} href={`/movie/${movie.id}`}>
                       <CommandItem
                         className="text-white cursor-pointer"
-                        key={movie.id}
                         value={movie.original_title}
                       >
                         <TvIcon className="mr-2 h-4 w-4" />
