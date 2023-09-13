@@ -7,7 +7,7 @@ import Loader from "./Loader";
 import Image from "next/image";
 import Navbar from "./Navbar";
 import { Button } from "./ui/Button";
-import { convertGenreIdsToNames } from "@/lib/utils";
+import { convertGenreIdsToNames, generateRandomRuntime, getMovieRating } from "@/lib/utils";
 import { genresData } from "@/lib/db";
 
 interface MovieProps {
@@ -15,6 +15,8 @@ interface MovieProps {
 }
 
 const MovieData: FC<MovieProps> = ({ id }) => {
+  const runtime: string = generateRandomRuntime();
+
   const {
     data: movie,
     refetch,
@@ -63,24 +65,24 @@ const MovieData: FC<MovieProps> = ({ id }) => {
             )}
             <div className="md:flex justify-between px-2">
               <div>
-                {movie.title}
-                {movie.release_date}.pg.runtime
+                {movie.title} | {movie.release_date} | {getMovieRating(movie?.genre_ids)} | {runtime}
               </div>
               {movie.genre_ids && (
                 <div>{convertGenreIdsToNames(movie.genre_ids, genresData)}</div>
               )}
-              <div>rating</div>
+              <div>
+                {movie.vote_average} | {movie.vote_count}
+              </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3">
             <div className="col-span-1 md:col-span-2">
               {movie.overview}
-              {/* directors */}
-              {/* stars */}
+              <p>Director: Joshua Edo </p>
+              <p>Writers: Jim Cash, Jack Epps Jr, Peter Craig </p>
               <div className="md:flex">
-                <Button>Top rated movie #number</Button>
-                {/* Awards */}
+                <Button>Top rated movie #{movie.popularity}</Button>
               </div>
             </div>
             <div className="flex flex-col col-span-1">

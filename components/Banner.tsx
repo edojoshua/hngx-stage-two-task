@@ -23,7 +23,7 @@ const Banner: FC<BannerProps> = ({}) => {
           <div className="flex gap-6">
             <div className="flex gap-2">
               <Icons.imdb />
-              <span className="text-sm">86.0 / 100</span>
+              <span className="text-sm">8.6 / 10</span>
             </div>
             <div className="flex gap-2">
               <Icons.tomato />

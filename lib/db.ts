@@ -78,3 +78,25 @@ export const genresData: Genre[] = [
       "name": "Western"
     }
   ]
+
+  export const ratingMappings: { [key: number]: string } = {
+    28: "PG-18",
+    12: "PG",
+    16: "PG",
+    35: "PG",
+    80: "PG-18",
+    99: "PG",
+    18: "PG",
+    10751: "PG",
+    14: "PG",
+    36: "PG",
+    27: "PG-18",
+    10402: "PG",
+    9648: "PG-13",
+    10749: "PG-13",
+    878: "PG-13",
+    10770: "PG",
+    53: "PG-13",
+    10752: "PG-18",
+    37: "PG",
+  };
