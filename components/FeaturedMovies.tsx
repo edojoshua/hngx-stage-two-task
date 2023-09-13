@@ -18,7 +18,7 @@ const FeaturedMovies: FC<FeaturedMoviesProps> = ({}) => {
     isFetching,
   } = useQuery({
     queryFn: () => fetchTop10Movies(),
-    queryKey: ["search-query"],
+    queryKey: ["top-ten"],
     enabled: true,
   });
 
@@ -36,10 +36,11 @@ const FeaturedMovies: FC<FeaturedMoviesProps> = ({}) => {
         <div className="pb-[9vh] place-items-center grid gap-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {(() => {
             const cards = [];
-            for (let i = 0; i < 10; i++) {
-              if (movies[i]) {
-                cards.push(<Card key={movies[i].id} movie={movies[i]} />);
-              }
+            const firstTenMovies = movies.slice(0, 10); 
+            for (let i = 0; i < firstTenMovies.length; i++) {
+              cards.push(
+                <Card key={firstTenMovies[i].id} movie={firstTenMovies[i]} />
+              );
             }
             return cards;
           })()}

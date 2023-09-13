@@ -22,7 +22,7 @@ const MovieData: FC<MovieProps> = ({ id }) => {
     isFetching,
   } = useQuery({
     queryFn: () => fetchMovieByID(id),
-    queryKey: ["search-query"],
+    queryKey: ["movie-by-id"],
     enabled: true,
   });
 

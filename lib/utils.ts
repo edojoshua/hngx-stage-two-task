@@ -22,5 +22,14 @@ export function convertGenreIdsToNames(genreIds: number[], genresData: Genre[]) 
   }
 }
 
+export const getRandomNumber = () => {
+  return Math.floor(Math.random() * (98 - 68 + 1)) + 68;
+};
+
+export function extractYearFromDate(dateString: string): string {
+  const year = dateString.split('-')[0];
+  return year;
+}
+
 
 

@@ -34,7 +34,7 @@ const Header: FC<HeaderProps> = ({}) => {
     <header
       className={`${
         show && "bg-black"
-      } wrapper flex justify-between items-center text-white fixed top-0 py-4 w-full z-[1]`}
+      } wrapper flex justify-between items-center text-white fixed top-0 py-4 w-full z-[5]`}
     >
       <Link
         href="/"

@@ -62,19 +62,19 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
           debounceRequest();
         }}
         value={input}
-        className="outline-none border-none focus focus:border-none focus:outline-none ring-0 bg-transparent"
+        className="z-50 outline-none border-none focus focus:border-none focus:outline-none ring-0 bg-transparent"
         placeholder="What do you want to watch?"
       />
 
       {input.length > 0 && (
-        <CommandList className="absolute bg-black text-white top-full inset-x-0 shadow rounded-b-md">
+        <CommandList className="z-50 absolute bg-black text-white top-full inset-x-0 shadow rounded-b-md">
           {isFetching && (
             <div className="w-full flex p-2 items-center justify-center">
               <Loader2 className="animate-spin" />
             </div>
           )}
           {isFetched && (
-            <CommandEmpty className=" bg-black text-white p-3 text-sm font-medium">
+            <CommandEmpty className="z-50  bg-black text-white p-3 text-sm font-medium">
               No results found.
             </CommandEmpty>
           )}
@@ -85,7 +85,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
                   movie.id && (
                     <Link key={movie.id} href={`/movie/${movie.id}`}>
                       <CommandItem
-                        className="text-white cursor-pointer"
+                        className="z-50 text-white cursor-pointer"
                         value={movie.original_title}
                       >
                         <TvIcon className="mr-2 h-4 w-4" />

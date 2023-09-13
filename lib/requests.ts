@@ -3,7 +3,7 @@ import { axiosInstance } from "./axios";
 
 export const fetchTop10Movies = async () => {
     try {
-      const response = await axiosInstance.get('/discover/movie', {
+      const response = await axiosInstance.get('/movie/top_rated', {
         params: {
           include_adult: 'true',
           include_video: 'false',
