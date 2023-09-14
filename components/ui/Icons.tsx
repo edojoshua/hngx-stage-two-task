@@ -16,23 +16,25 @@ const instagramPath = require("@/public/icons/instagram.svg") as string;
 const youtubePath = require("@/public/icons/youtube.svg") as string;
 const sendPath = require("@/public/icons/send.svg") as string;
 const logOutPath = require("@/public/icons/Logout.svg") as string;
+const helsinkiPath = require("@/public/icons/helsinki.svg") as string;
 
 export const Icons = {
-  imdb: () => <Image src={imdbPath} alt="Tomato" />,
+  imdb: () => <Image src={imdbPath} alt="" />,
   tomato: () => <Image src={tomatoPath} alt="Tomato" />,
-  home: () => <Image src={homePath} alt="Tomato" />,
-  tvSeries: () => <Image src={tvSeriesPath} alt="Tomato" />,
-  ticket: () => <Image src={ticketPath} alt="Tomato" />,
-  movieProjector: () => <Image src={movieProjectorPath} alt="Tomato" />,
-  calendar: () => <Image src={calendarPath} alt="Tomato" />,
-  twitter: () => <Image src={twitterPath} alt="Tomato" />,
-  listWhite: () => <Image src={listWhitePath} alt="Tomato" />,
-  list: () => <Image src={listPath} alt="Tomato" />,
-  facebook: () => <Image src={facebookPath} alt="Tomato" />,
-  instagram: () => <Image src={instagramPath} alt="Tomato" />,
-  youtube: () => <Image src={youtubePath} alt="Tomato" />,
-  send: () => <Image src={sendPath} alt="Tomato" />,
-  logOut: () => <Image src={logOutPath} alt="Tomato" />,
+  home: () => <Image src={homePath} alt="" />,
+  tvSeries: () => <Image src={tvSeriesPath} alt="" />,
+  ticket: () => <Image src={ticketPath} alt="" />,
+  movieProjector: () => <Image src={movieProjectorPath} alt="" />,
+  calendar: () => <Image src={calendarPath} alt="" />,
+  twitter: () => <Image src={twitterPath} alt="" />,
+  listWhite: () => <Image src={listWhitePath} alt="" />,
+  list: () => <Image src={listPath} alt="" />,
+  facebook: () => <Image src={facebookPath} alt="" />,
+  instagram: () => <Image src={instagramPath} alt="" />,
+  youtube: () => <Image src={youtubePath} alt="" />,
+  send: () => <Image src={sendPath} alt="" />,
+  logOut: () => <Image src={logOutPath} alt="" />,
+  helsinki: () => <Image src={helsinkiPath} alt="" />,
   play: (props: LucideProps) => (
     <svg
       width="20"

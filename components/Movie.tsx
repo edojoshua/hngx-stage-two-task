@@ -7,8 +7,13 @@ import Loader from "./Loader";
 import Image from "next/image";
 import Navbar from "./Navbar";
 import { Button } from "./ui/Button";
-import { convertGenreIdsToNames, generateRandomRuntime, getMovieRating } from "@/lib/utils";
+import {
+  convertGenreIdsToNames,
+  generateRandomRuntime,
+  getMovieRating,
+} from "@/lib/utils";
 import { genresData } from "@/lib/db";
+import { Icons } from "./ui/Icons";
 
 interface MovieProps {
   id: string;
@@ -46,12 +51,12 @@ const MovieData: FC<MovieProps> = ({ id }) => {
 
   if (isFetched && movie) {
     return (
-      <div className="h-screen py-5 w-full grid grid-cols-5">
-        <div className="hidden md:flex md:col-span-1">
+      <div className="min-h-screen w-full grid grid-cols-7 py-10">
+        <div className="hidden md:flex md:col-span-1 border border-zinc-400 rounded-r-3xl">
           <Navbar />
         </div>
-        <div className="col-span-5 md:col-span-4 space-y-20 md:space-y-16 px-5">
-          <div className="h-[60vh]">
+        <div className="col-span-7 md:col-span-6 md:px-10">
+          <div className="h-auto md:h-[70vh]">
             {movie.backdrop_path && (
               <Image
                 src={
@@ -63,32 +68,41 @@ const MovieData: FC<MovieProps> = ({ id }) => {
                 className="object-cover h-full w-full rounded-2xl"
               />
             )}
-            <div className="md:flex justify-between px-2">
+
+            <div className="md:flex justify-between text-lg md:text-xl pt-8 font-medium">
               <div>
-                {movie.title} | {movie.release_date} | {getMovieRating(movie?.genre_ids)} | {runtime}
+                {movie.title} •{" "}
+                {new Date(movie.release_date)
+                  .toUTCString()
+                  .replace(" 00:00:00 GMT", "")}{" "}
+                • {getMovieRating(movie?.genre_ids)} • {runtime}
               </div>
               {movie.genre_ids && (
                 <div>{convertGenreIdsToNames(movie.genre_ids, genresData)}</div>
               )}
               <div>
-                {movie.vote_average} | {movie.vote_count}
+                {movie.vote_average} • {movie.vote_count}
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3">
-            <div className="col-span-1 md:col-span-2">
-              {movie.overview}
+          <div className="grid grid-cols-1 md:grid-cols-7 mt-20">
+            <div className="col-span-1 md:col-span-5 text-base md:text-lg space-y-6 text-[#414141]">
+              <p>{movie.overview}</p>
               <p>Director: Joshua Edo </p>
-              <p>Writers: Jim Cash, Jack Epps Jr, Peter Craig </p>
+              <p>Writers: Josh, Aniekan and Thomas</p>
               <div className="md:flex">
-                <Button>Top rated movie #{movie.popularity}</Button>
+                <Button className="py-5 text-base md:text-lg" >Top rated movie #{movie.popularity}</Button>
               </div>
             </div>
-            <div className="flex flex-col col-span-1">
-              <Button>See Showtimes</Button>
-              <Button>More watch options</Button>
-              {/* other image */}
+            <div className="flex flex-col col-span-2 space-y-3">
+              <Button className="py-5 text-base md:text-lg">
+                See Showtimes
+              </Button>
+              <Button className="py-5 text-base md:text-lg">
+                More watch options
+              </Button>
+              <Icons.helsinki />
             </div>
           </div>
         </div>

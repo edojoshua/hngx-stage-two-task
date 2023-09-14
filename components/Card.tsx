@@ -3,11 +3,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { Icons } from "./ui/Icons";
 import { Movie } from "@/types/tmdb";
-import {
-  convertGenreIdsToNames,
-  extractYearFromDate,
-  getRandomNumber,
-} from "@/lib/utils";
+import { convertGenreIdsToNames, getRandomNumber } from "@/lib/utils";
 import { genresData } from "@/lib/db";
 import Heart from "./ui/Heart";
 
@@ -21,7 +17,7 @@ const Card: FC<CardProps> = ({ movie }) => {
   const tomatoScore = getRandomNumber();
 
   const date = movie.release_date;
-  const year = extractYearFromDate(date);
+  const UTCString = new Date(date).toUTCString().replace(" 00:00:00 GMT", "");
 
   return (
     <div className="card w-[233px] md:w-auto flex items-center justify-center relative">
@@ -36,7 +32,9 @@ const Card: FC<CardProps> = ({ movie }) => {
           alt={movie.title}
           className="h-[320px] w-[233px] object-cover hover:scale-105 transition ease-in-out"
         />
-        <div className="text-xs text-zinc-500 font-medium">USA, {year}</div>
+        <div className="text-xs text-zinc-500 font-medium">
+          USA, {UTCString}
+        </div>
         <div className="font-semibold text-lg">{movie.title}</div>
         <div className="flex justify-between text-sm">
           <div className="flex gap-2">
