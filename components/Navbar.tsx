@@ -32,12 +32,12 @@ const Navbar: FC<NavbarProps> = ({}) => {
         </div>
       </div>
 
-      <div className="mx-6 rounded-xl pt-10 pb-5 space-y-3 px-2 border border-[#BE123C] bg-[#FCF4F7]">
-        <h4 className="font-semibold text-xs">
+      <div className="mx-6 rounded-xl pt-8 pb-5 space-y-1 px-2 border border-[#BE123C] bg-[#FCF4F7]">
+        <h4 className="font-semibold text-2xs">
           Play movie quizes and earn free tickets
         </h4>
-        <p className="text-xs">50k people are playing now</p>
-        <div className="font-semibold text-xs rounded-full text-center bg-[#F9E8EC] py-1 px-1 text-[#BE123C]">
+        <p className="text-3xs">50k people are playing now</p>
+        <div className="font-semibold text-3xs rounded-full text-center bg-[#F9E8EC] py-2 px-1 text-[#BE123C]">
           Start playing
         </div>
       </div>

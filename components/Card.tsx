@@ -20,12 +20,16 @@ const Card: FC<CardProps> = ({ movie }) => {
   const UTCString = new Date(date).toUTCString().replace(" 00:00:00 GMT", "");
 
   return (
-    <div className="card w-[233px] md:w-auto flex items-center justify-center relative">
+    <div
+      data-testid="movie-card"
+      className="card w-[233px] md:w-auto flex items-center justify-center relative"
+    >
       <div className="absolute rounded-[50%] top-4 right-4 flex items-center justify-center z-[2] overflow-hidden favorite">
         <Heart />
       </div>
       <Link href={`/movie/${movie.id}`} className="space-y-3">
         <Image
+          data-testid="movie-poster"
           src={`https://www.themoviedb.org/t/p/original${movie.poster_path}`}
           width={1000}
           height={1000}
@@ -33,9 +37,11 @@ const Card: FC<CardProps> = ({ movie }) => {
           className="h-[320px] w-[233px] object-cover hover:scale-105 transition ease-in-out"
         />
         <div className="text-xs text-zinc-500 font-medium">
-          USA, {UTCString}
+          USA, <span data-testid="movie-release-date">{UTCString}</span>
         </div>
-        <div className="font-semibold text-lg">{movie.title}</div>
+        <div data-testid="movie-title" className="font-semibold text-lg">
+          {movie.title}
+        </div>
         <div className="flex justify-between text-sm">
           <div className="flex gap-2">
             <Icons.imdb />

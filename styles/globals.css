@@ -78,6 +78,16 @@
   }
 }
 
+.text-2xs {
+  font-size: 0.75rem;
+  line-height: 1.4rem;
+}
+
+.text-3xs {
+  font-size: 0.65rem;
+  line-height: 1.4rem;
+}
+
 #search {
   overflow-y: scroll !important;
   overflow-x: hidden !important;

@@ -1,5 +1,6 @@
 import { Genre, Movie, Video } from "@/types/tmdb";
 import { axiosInstance } from "./axios";
+import { toast } from "@/hooks/use-toast";
 
 export const fetchTop10Movies = async () => {
   try {
@@ -17,6 +18,10 @@ export const fetchTop10Movies = async () => {
     // console.log(response.data.results);
     return response.data.results as Movie[];
   } catch (error) {
+    toast({
+      description: "Error fetching movies",
+      variant: "destructive",
+    });
     console.error("Error fetching movies:", error);
     throw error;
   }
@@ -38,6 +43,10 @@ export const fetchSearchMovies = async (input: string) => {
     //   console.log(response.data.results);
     return response.data.results as Movie[];
   } catch (error) {
+    toast({
+      description: "Error fetching movies",
+      variant: "destructive",
+    });
     console.error("Error fetching movies:", error);
     throw error;
   }
@@ -53,6 +62,10 @@ export const fetchMovieByID = async (id: string) => {
     // console.log(response.data);
     return response.data as Movie;
   } catch (error) {
+    toast({
+      description: "Error fetching movies",
+      variant: "destructive",
+    });
     console.error("Error fetching movies:", error);
     throw error;
   }
@@ -68,6 +81,10 @@ export const fetchGenreData = async () => {
     // console.log(response.data.genres);
     return response.data.genres as Genre[];
   } catch (error) {
+    toast({
+      description: "Error fetching movies",
+      variant: "destructive",
+    });
     console.error("Error fetching movies:", error);
     throw error;
   }
@@ -86,6 +103,10 @@ export const fetchVideoId = async (movieId: string) => {
     console.log(videoId);
     return videoId as string;
   } catch (error) {
+    toast({
+      description: "Error fetching movies",
+      variant: "destructive",
+    });
     console.error("Error fetching movies:", error);
     throw error;
   }
@@ -107,6 +128,10 @@ export const fetchBannerMovies = async () => {
     // console.log(response.data.results);
     return response.data.results as Movie[];
   } catch (error) {
+    toast({
+      description: "Error fetching movies",
+      variant: "destructive",
+    });
     console.error("Error fetching movies:", error);
     throw error;
   }

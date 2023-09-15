@@ -7,9 +7,11 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import Modal from "./Modal";
 
-interface HeaderProps {}
+interface HeaderProps {
+  fixed?: boolean;
+}
 
-const Header: FC<HeaderProps> = ({}) => {
+const Header: FC<HeaderProps> = ({ fixed }) => {
   const [show, handleShow] = useState<boolean>(false);
   const [toggleModal, setToggleModal] = useState<boolean>(false);
 
@@ -34,7 +36,9 @@ const Header: FC<HeaderProps> = ({}) => {
     <header
       className={`${
         show && "bg-black"
-      } wrapper flex justify-between items-center text-white fixed top-0 py-4 w-full z-[5]`}
+      } wrapper flex justify-between items-center text-white ${
+        fixed ? "fixed" : "bg-black"
+      } top-0 py-4 w-full z-[5]`}
     >
       <Link
         href="/"

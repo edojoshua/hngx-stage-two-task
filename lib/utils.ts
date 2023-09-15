@@ -90,3 +90,12 @@ export function formatPopularity(popularity: number | undefined): string {
 }
 
 
+export function formatVoteAverage(voteAverage: number | undefined): string {
+  if (typeof voteAverage !== 'number' || isNaN(voteAverage)) {
+    return ''; 
+  }
+  
+  return voteAverage.toFixed(1); 
+}
+
+
