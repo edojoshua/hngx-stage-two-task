@@ -58,3 +58,12 @@ export function getMovieRating(genreIds: number[] | undefined): string {
 
   return rating;
 }
+
+export function truncateText(text: string, maxWords: number) {
+  const words = text.split(" ");
+  if (words.length > maxWords) {
+    return words.slice(0, maxWords).join(" ") + " ...";
+  } else {
+    return text;
+  }
+}

@@ -14,7 +14,7 @@ export const fetchTop10Movies = async () => {
       },
     });
 
-    console.log(response.data.results);
+    // console.log(response.data.results);
     return response.data.results as Movie[];
   } catch (error) {
     console.error("Error fetching movies:", error);
@@ -50,7 +50,7 @@ export const fetchMovieByID = async (id: string) => {
         language: "en-US",
       },
     });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data as Movie;
   } catch (error) {
     console.error("Error fetching movies:", error);
@@ -65,7 +65,7 @@ export const fetchGenreData = async () => {
         language: "en-US",
       },
     });
-    console.log(response.data.genres);
+    // console.log(response.data.genres);
     return response.data.genres as Genre[];
   } catch (error) {
     console.error("Error fetching movies:", error);
@@ -78,13 +78,34 @@ export const fetchVideoId = async (movieId: string) => {
     const response = await axiosInstance.get(
       `/movie/${movieId}/videos?&append_to_response=videos`
     );
-    console.log(response.data.results);
+    // console.log(response.data.results);
     const video = response.data.results.find(
       (result: Video) => result.name === "Official Trailer"
     );
     const videoId = video ? video.key : response.data.results[0]?.key || "";
     console.log(videoId);
     return videoId as string;
+  } catch (error) {
+    console.error("Error fetching movies:", error);
+    throw error;
+  }
+};
+
+export const fetchBannerMovies = async () => {
+  try {
+    const response = await axiosInstance.get("/discover/movie", {
+      params: {
+        include_adult: "true",
+        include_video: "false",
+        language: "en-US",
+        page: "1",
+        primary_release_year: "2023",
+        sort_by: "popularity.desc",
+      },
+    });
+
+    // console.log(response.data.results);
+    return response.data.results as Movie[];
   } catch (error) {
     console.error("Error fetching movies:", error);
     throw error;

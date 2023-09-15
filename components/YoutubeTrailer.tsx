@@ -8,7 +8,11 @@ interface YoutubeTrailerProps {
 }
 
 const YoutubeTrailer: FC<YoutubeTrailerProps> = ({ videoId }) => {
-  return videoId ? <Youtube videoId={videoId} /> : <Loader />;
+  return (
+    <div className="mt-16 w-full h-full flex items-center justify-center">
+      {videoId ? <Youtube videoId={videoId} /> : <Loader />}
+    </div>
+  );
 };
 
 export default YoutubeTrailer;
