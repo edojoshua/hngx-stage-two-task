@@ -60,18 +60,16 @@ This is a movie discovery web application that allows users to search for movies
 
 ## Demo
 
-You can access a live demo of this application [here](insert_live_demo_url).
+You can access a live demo of this application [here](https://hngx-stage-two-task.vercel.app/)).
 
 ## Author
 
-[Your Name]
+Joshua Edo
 
 ## License
 
-This project is licensed under the [License Name] License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgments
 
 - This project was created as part of the HNGx Stage Two Task.
-
-Feel free to customize this README to include additional information or formatting as needed for your project. Good luck with your movie discovery web application!
