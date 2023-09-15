@@ -1,13 +1,27 @@
+"use client";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Button } from "./ui/Button";
-import { Icons } from "./ui/Icons";
+import { ClientIcons } from "./ui/ClientIcons";
+import Modal from "./Modal";
+import YoutubeTrailer from "./YoutubeTrailer";
 
 interface BannerProps {}
 
 const Banner: FC<BannerProps> = ({}) => {
+  const [toggleModal, setToggleModal] = useState<boolean>(false);
+
+  const handleModal = () => {
+    setToggleModal((prevState) => !prevState);
+  };
+
   return (
     <div className="text-white h-screen overflow-hidden relative bg-black bg-opacity-50">
+      {toggleModal && (
+        <Modal toggleModal={handleModal}>
+          <YoutubeTrailer videoId="qEVUtrk8_B4" />
+        </Modal>
+      )}
       <Image
         src="https://www.themoviedb.org/t/p/original/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg"
         width={3840}
@@ -22,11 +36,11 @@ const Banner: FC<BannerProps> = ({}) => {
           </h2>
           <div className="flex gap-6">
             <div className="flex gap-2">
-              <Icons.imdb />
+              <ClientIcons.imdb />
               <span className="text-sm">8.6 / 10</span>
             </div>
             <div className="flex gap-2">
-              <Icons.tomato />
+              <ClientIcons.tomato />
               <span className="text-sm">97%</span>
             </div>
           </div>
@@ -35,8 +49,8 @@ const Banner: FC<BannerProps> = ({}) => {
             assassins guild and with a $14 million price tag on his head, he is
             the target of hit men and women everywhere.
           </p>
-          <Button className={`bg-[#BE123C] space-x-2`}>
-            <Icons.play />
+          <Button className={`bg-[#BE123C] space-x-2`} onClick={handleModal}>
+            <ClientIcons.play />
             <span className="font-medium">WATCH TRAILER</span>
           </Button>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
-import { FC } from "react";
-import { fetchMovieByID } from "@/lib/requests";
+import { FC, useState } from "react";
+import { fetchMovieByID, fetchVideoId } from "@/lib/requests";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "./Loader";
 import Image from "next/image";
@@ -14,6 +14,8 @@ import {
 } from "@/lib/utils";
 import { genresData } from "@/lib/db";
 import { Icons } from "./ui/Icons";
+import YoutubeTrailer from "./YoutubeTrailer";
+import Modal from "./Modal";
 
 interface MovieProps {
   id: string;
@@ -21,6 +23,11 @@ interface MovieProps {
 
 const MovieData: FC<MovieProps> = ({ id }) => {
   const runtime: string = generateRandomRuntime();
+  const [toggleModal, setToggleModal] = useState<boolean>(false);
+
+  const handleModal = () => {
+    setToggleModal((prevState) => !prevState);
+  };
 
   const {
     data: movie,
@@ -30,6 +37,12 @@ const MovieData: FC<MovieProps> = ({ id }) => {
   } = useQuery({
     queryFn: () => fetchMovieByID(id),
     queryKey: ["movie-by-id"],
+    enabled: true,
+  });
+
+  const { data: videoId } = useQuery({
+    queryFn: () => fetchVideoId(id),
+    queryKey: ["video-by-id"],
     enabled: true,
   });
 
@@ -51,7 +64,12 @@ const MovieData: FC<MovieProps> = ({ id }) => {
 
   if (isFetched && movie) {
     return (
-      <div className="min-h-screen w-full grid grid-cols-7 py-10">
+      <div className="min-h-screen w-full grid grid-cols-7 py-10 text-white">
+        {toggleModal && (
+          <Modal toggleModal={handleModal}>
+            <YoutubeTrailer videoId={videoId} />
+          </Modal>
+        )}
         <div className="hidden md:flex md:col-span-1 border border-zinc-400 rounded-r-3xl">
           <Navbar />
         </div>
@@ -66,6 +84,7 @@ const MovieData: FC<MovieProps> = ({ id }) => {
                 width={3840}
                 height={2160}
                 className="object-cover h-full w-full rounded-2xl"
+                onClick={handleModal}
               />
             )}
 
@@ -92,7 +111,9 @@ const MovieData: FC<MovieProps> = ({ id }) => {
               <p>Director: Joshua Edo </p>
               <p>Writers: Josh, Aniekan and Thomas</p>
               <div className="md:flex">
-                <Button className="py-5 text-base md:text-lg" >Top rated movie #{movie.popularity}</Button>
+                <Button className="py-5 text-base md:text-lg">
+                  Top rated movie #{movie.popularity}
+                </Button>
               </div>
             </div>
             <div className="flex flex-col col-span-2 space-y-3">
