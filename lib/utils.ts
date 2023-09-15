@@ -67,3 +67,26 @@ export function truncateText(text: string, maxWords: number) {
     return text;
   }
 }
+
+export function formatVoteCount(voteCount: number | undefined): string {
+  if (typeof voteCount !== 'number' || isNaN(voteCount)) {
+    return ''; 
+  }
+
+  if (voteCount >= 1000) {
+    const formattedCount = (voteCount / 1000).toFixed(1); 
+    return `${formattedCount}k`;
+  } else {
+    return voteCount.toString();
+  }
+}
+
+export function formatPopularity(popularity: number | undefined): string {
+  if (typeof popularity !== 'number' || isNaN(popularity)) {
+    return '';
+  }
+
+  return Math.round(popularity).toString();
+}
+
+

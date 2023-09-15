@@ -37,35 +37,43 @@ const Banner: FC<BannerProps> = ({}) => {
     setToggleModal((prevState) => !prevState);
   };
 
-  console.log(selectedMovie?.id);
+  // console.log(selectedMovie?.id);
 
   const { data: videoId } = useQuery({
     queryFn: () => fetchVideoId(selectedMovie?.id?.toString() || ""),
-    queryKey: ["video-by-id"],
-    enabled: true,
+    queryKey: ["video-by-id", selectedMovie?.id],
+    enabled: Boolean(selectedMovie?.id),
   });
 
-  console.log(videoId);
+  // console.log(videoId);
 
   const tomatoScore = getRandomNumber();
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setBannerNumber((prevNumber) => (prevNumber % 10) + 1);
-    }, 10000); 
+    setActiveNav(bannerNumber);
+
+    let intervalId: NodeJS.Timeout | null = null;
+
+    if (!toggleModal) {
+      intervalId = setInterval(() => {
+        setBannerNumber((prevNumber) => (prevNumber % 10) + 1);
+      }, 8000);
+    }
 
     return () => {
-      clearInterval(intervalId);
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
     };
-  }, []); 
+  }, [toggleModal, bannerNumber]);
 
   const handleBannerNumberChange = (number: number) => {
     setBannerNumber(number);
-    setActiveNav(number); // Update active navigation span
+    setActiveNav(number);
   };
 
   return (
-    <div className="text-white h-[90vh] overflow-hidden relative bg-black bg-opacity-50">
+    <div className="text-white h-[85vh] overflow-hidden relative bg-black bg-opacity-50">
       {isFetching && <PageLoader />}
       {isFetched && (
         <>
@@ -113,7 +121,7 @@ const Banner: FC<BannerProps> = ({}) => {
               </Button>
             </div>
 
-            <div className="flex gap-2 md:flex-col absolute md:relative bottom-6 font-medium text-sm">
+            <div className="flex gap-4 md:gap-3 md:flex-col absolute md:relative bottom-6 font-medium text-sm">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => (
                 <span
                   key={number}
