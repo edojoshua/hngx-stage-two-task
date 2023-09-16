@@ -83,7 +83,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
               {queryResults?.map(
                 (movie) =>
                   movie.id && (
-                    <Link key={movie.id} href={`/movie/${movie.id}`}>
+                    <Link key={movie.id} href={`/movies/${movie.id}`}>
                       <CommandItem
                         className="z-50 text-white cursor-pointer"
                         value={movie.original_title}

@@ -27,7 +27,7 @@ const Card: FC<CardProps> = ({ movie }) => {
       <div className="absolute rounded-[50%] top-4 right-4 flex items-center justify-center z-[2] overflow-hidden favorite">
         <Heart />
       </div>
-      <Link href={`/movie/${movie.id}`} className="space-y-3">
+      <Link href={`/movies/${movie.id}`} className="space-y-3">
         <Image
           data-testid="movie-poster"
           src={`https://www.themoviedb.org/t/p/original${movie.poster_path}`}
