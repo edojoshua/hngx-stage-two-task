@@ -10,7 +10,6 @@ export const fetchTop10Movies = async () => {
         include_video: "false",
         language: "en-US",
         page: "1",
-        primary_release_year: "2023",
         sort_by: "popularity.desc",
       },
     });
