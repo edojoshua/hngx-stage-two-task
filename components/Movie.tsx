@@ -93,6 +93,7 @@ const MovieData: FC<MovieProps> = ({ id }) => {
                   alt={movie.title}
                   width={3840}
                   height={2160}
+                  data-testid="movie-poster"
                   className="object-cover h-full w-full rounded-2xl"
                 />
               </div>
