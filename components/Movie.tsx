@@ -58,7 +58,7 @@ const MovieData: FC<MovieProps> = ({ id }) => {
 
   if (isFetched && !movie) {
     return (
-      <div className="h-screen w-full flex items-center justify-center">
+      <div className="h-screen w-full flex items-center justify-center px-5">
         <p className="text-3xl font-bold">Error fetching movie data</p>
       </div>
     );

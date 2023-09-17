@@ -6,11 +6,10 @@ export const fetchTop10Movies = async () => {
   try {
     const response = await axiosInstance.get("/movie/top_rated", {
       params: {
-        include_adult: "true",
-        include_video: "false",
+        include_adult: "false",
+        include_video: "true",
         language: "en-US",
         page: "1",
-        primary_release_year: "2023",
         sort_by: "popularity.desc",
       },
     });
