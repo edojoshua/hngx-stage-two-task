@@ -35,13 +35,8 @@ export function extractYearFromDate(dateString: string): string {
   return year;
 }
 
-export function generateRandomRuntime(): string {
-  const totalMinutes = Math.floor(Math.random() * (180 - 30 + 1)) + 30;
-
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-
-  const runtime = `${totalMinutes}m`;
+export function formatRuntime(runtimeInNumbers: number) {
+  const runtime = `${runtimeInNumbers}m`;
 
   return runtime;
 }

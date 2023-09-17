@@ -10,9 +10,9 @@ import { Button } from "./ui/Button";
 import {
   convertGenreIdsToNames,
   formatPopularity,
+  formatRuntime,
   formatVoteAverage,
   formatVoteCount,
-  generateRandomRuntime,
   getMovieRating,
 } from "@/lib/utils";
 import { genresData } from "@/lib/db";
@@ -25,7 +25,6 @@ interface MovieProps {
 }
 
 const MovieData: FC<MovieProps> = ({ id }) => {
-  const runtime: string = generateRandomRuntime();
   const [toggleModal, setToggleModal] = useState<boolean>(false);
 
   const handleModal = () => {
@@ -65,6 +64,7 @@ const MovieData: FC<MovieProps> = ({ id }) => {
   }
 
   if (isFetched && movie) {
+    const runtime = formatRuntime(movie.runtime);
     const date = new Date(movie.release_date);
     const UTCString = new Date(date).toUTCString();
 

@@ -58,7 +58,7 @@ export const fetchMovieByID = async (id: string) => {
         language: "en-US",
       },
     });
-    // console.log(response.data);
+    console.log(response.data);
     return response.data as Movie;
   } catch (error) {
     toast({
