@@ -16,9 +16,8 @@ const Card: FC<CardProps> = ({ movie }) => {
 
   const tomatoScore = getRandomNumber();
 
-  const date = movie.release_date;
-  const UTCString = new Date(date).toUTCString().replace(" 00:00:00 GMT", "");
-
+  const date = new Date(movie.release_date);
+  const UTCString = new Date(date).toUTCString().toString();
   return (
     <div
       data-testid="movie-card"

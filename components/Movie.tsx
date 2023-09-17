@@ -65,8 +65,8 @@ const MovieData: FC<MovieProps> = ({ id }) => {
   }
 
   if (isFetched && movie) {
-    const date = movie.release_date;
-    const UTCString = new Date(date).toUTCString().replace(" 00:00:00 GMT", "");
+    const date = new Date(movie.release_date);
+    const UTCString = new Date(date).toUTCString().toString();
 
     return (
       <div className="min-h-screen w-full grid grid-cols-7 py-10 text-white">
