@@ -104,7 +104,9 @@ const MovieData: FC<MovieProps> = ({ id }) => {
                 <span data-testid="movie-title">{movie.title}</span> •{" "}
                 <span data-testid="movie-release-date">{UTCString}</span> •{" "}
                 {getMovieRating(movie?.genre_ids)} •{" "}
-                <span data-testid="movie-runtime">{runtime}</span>
+                <span>
+                  <span data-testid="movie-runtime">{runtime}</span>m
+                </span>
               </div>
               {movie.genre_ids && (
                 <div>{convertGenreIdsToNames(movie.genre_ids, genresData)}</div>

@@ -36,7 +36,7 @@ export function extractYearFromDate(dateString: string): string {
 }
 
 export function formatRuntime(runtimeInNumbers: number) {
-  const runtime = `${runtimeInNumbers}m`;
+  const runtime = `${runtimeInNumbers}`;
 
   return runtime;
 }
