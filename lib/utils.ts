@@ -36,14 +36,12 @@ export function extractYearFromDate(dateString: string): string {
 }
 
 export function generateRandomRuntime(): string {
-  const hours = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+  const totalMinutes = Math.floor(Math.random() * (180 - 30 + 1)) + 30;
 
-  const minutes =
-    hours === 3
-      ? Math.floor(Math.random() * 60)
-      : Math.floor(Math.random() * (60 - 30 + 1)) + 30;
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
 
-  const runtime = `${hours}hr ${minutes}m`;
+  const runtime = `${totalMinutes}m`;
 
   return runtime;
 }
@@ -69,12 +67,12 @@ export function truncateText(text: string, maxWords: number) {
 }
 
 export function formatVoteCount(voteCount: number | undefined): string {
-  if (typeof voteCount !== 'number' || isNaN(voteCount)) {
-    return ''; 
+  if (typeof voteCount !== "number" || isNaN(voteCount)) {
+    return "";
   }
 
   if (voteCount >= 1000) {
-    const formattedCount = (voteCount / 1000).toFixed(1); 
+    const formattedCount = (voteCount / 1000).toFixed(1);
     return `${formattedCount}k`;
   } else {
     return voteCount.toString();
@@ -82,20 +80,17 @@ export function formatVoteCount(voteCount: number | undefined): string {
 }
 
 export function formatPopularity(popularity: number | undefined): string {
-  if (typeof popularity !== 'number' || isNaN(popularity)) {
-    return '';
+  if (typeof popularity !== "number" || isNaN(popularity)) {
+    return "";
   }
 
   return Math.round(popularity).toString();
 }
 
-
 export function formatVoteAverage(voteAverage: number | undefined): string {
-  if (typeof voteAverage !== 'number' || isNaN(voteAverage)) {
-    return ''; 
+  if (typeof voteAverage !== "number" || isNaN(voteAverage)) {
+    return "";
   }
-  
-  return voteAverage.toFixed(1); 
+
+  return voteAverage.toFixed(1);
 }
-
-
