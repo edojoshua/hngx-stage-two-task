@@ -35,12 +35,6 @@ export function extractYearFromDate(dateString: string): string {
   return year;
 }
 
-export function formatRuntime(runtimeInNumbers: number) {
-  const runtime = `${runtimeInNumbers}`;
-
-  return runtime;
-}
-
 export function getMovieRating(genreIds: number[] | undefined): string {
   let rating = "PG";
   genreIds?.forEach((genreId) => {

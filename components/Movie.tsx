@@ -10,7 +10,6 @@ import { Button } from "./ui/Button";
 import {
   convertGenreIdsToNames,
   formatPopularity,
-  formatRuntime,
   formatVoteAverage,
   formatVoteCount,
   getMovieRating,
@@ -64,7 +63,6 @@ const MovieData: FC<MovieProps> = ({ id }) => {
   }
 
   if (isFetched && movie) {
-    const runtime = formatRuntime(movie.runtime);
     const date = new Date(movie.release_date);
     const UTCString = new Date(date).toUTCString();
 
@@ -105,7 +103,7 @@ const MovieData: FC<MovieProps> = ({ id }) => {
                 <span data-testid="movie-release-date">{UTCString}</span> •{" "}
                 {getMovieRating(movie?.genre_ids)} •{" "}
                 <span>
-                  <span data-testid="movie-runtime">{runtime}</span>m
+                  <span data-testid="movie-runtime">{movie.runtime}</span>m
                 </span>
               </div>
               {movie.genre_ids && (
