@@ -6,7 +6,7 @@ export const fetchTop10Movies = async () => {
   try {
     const response = await axiosInstance.get("/movie/top_rated", {
       params: {
-        include_adult: "true",
+        include_adult: "false",
         include_video: "false",
         language: "en-US",
         page: "1",
