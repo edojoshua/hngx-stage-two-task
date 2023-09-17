@@ -16,8 +16,6 @@ const Card: FC<CardProps> = ({ movie }) => {
 
   const tomatoScore = getRandomNumber();
 
-  const date = new Date(movie.release_date);
-  const UTCString = new Date(date).toUTCString().toString();
   return (
     <div
       data-testid="movie-card"
@@ -36,7 +34,7 @@ const Card: FC<CardProps> = ({ movie }) => {
           className="h-[320px] w-[233px] object-cover hover:scale-105 transition ease-in-out"
         />
         <div className="text-xs text-zinc-500 font-medium">
-          USA, <span data-testid="movie-release-date">{UTCString}</span>
+          USA, <span data-testid="movie-release-date">{movie.release_date}</span>
         </div>
         <div data-testid="movie-title" className="font-semibold text-lg">
           {movie.title}
